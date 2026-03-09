@@ -1,0 +1,7 @@
+# Tutor/Jinja2 templates — must NOT be formatted by Prettier/SCSS formatters
+# because {{ }} syntax is interpreted as CSS blocks by formatters.
+inovatecindigo/templates/**/*.scss
+inovatecindigo/templates/**/*.html
+inovatecindigo/templates/**/*.js
+inovatecindigo/components/**/*.jsx
+inovatecindigo/patches/**
