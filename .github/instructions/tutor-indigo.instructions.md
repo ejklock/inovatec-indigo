@@ -1,6 +1,6 @@
 ---
-description: "Use when working on the tutor-indigo Open edX theme plugin: editing plugin.py, SCSS files, Mako templates, Jinja2 config variables, or any file under tutorindigo/. Covers plugin hooks, SCSS architecture, template conventions, dark theme, config naming, Python linting, and build workflow."
-applyTo: "tutorindigo/**"
+description: "Use when working on the inovatec-indigo Open edX theme plugin: editing plugin.py, SCSS files, Mako templates, Jinja2 config variables, or any file under inovatecindigo/. Covers plugin hooks, SCSS architecture, template conventions, dark theme, config naming, Python linting, and build workflow."
+applyTo: "inovatecindigo/**"
 ---
 
 # tutor-indigo — Convenções e Padrões do Projeto
@@ -12,14 +12,14 @@ applyTo: "tutorindigo/**"
 - **tutor-mfe**: `>=21.0.0, <22.0.0`
 - **Linter**: `ruff` (seleções: E, I, N, F401, F841, W292)
 - **Build**: `hatch` com `hatchling` como backend
-- **Versão do plugin**: definida em `tutorindigo/__about__.py`
+- **Versão do plugin**: definida em `inovatecindigo/__about__.py`
 
 ## Arquitetura do Plugin
 
 ### Estrutura de diretórios
 
 ```
-tutorindigo/
+inovatecindigo/
   __about__.py       # versão do plugin
   plugin.py          # ponto de entrada: hooks Tutor, config, patches MFE
   templates/
@@ -204,7 +204,7 @@ MFEs estilizados pelo Indigo:
 indigo_styled_mfes = ["learning", "learner-dashboard", "profile", "account", "discussions"]
 ```
 
-Os patches são injetados via `hooks.Filters.ENV_PATCHES` usando arquivos em `tutorindigo/patches/`.
+Os patches são injetados via `hooks.Filters.ENV_PATCHES` usando arquivos em `inovatecindigo/patches/`.
 
 ## Build e Desenvolvimento
 
@@ -220,11 +220,11 @@ tutor dev run lms bash     # não precisa rebuild
 ### Verificar linting antes de commitar
 
 ```bash
-ruff check tutorindigo/
+ruff check inovatecindigo/
 ```
 
 ### Release e versionamento
 
-- A versão está em `tutorindigo/__about__.py`
+- A versão está em `inovatecindigo/__about__.py`
 - O CHANGELOG usa `scriv` (ver `changelog.d/`)
 - Branches de feature: use prefixo do cliente (ex: `inovatec/nome-da-feature`)

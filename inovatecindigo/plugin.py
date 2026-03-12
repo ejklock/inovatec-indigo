@@ -44,13 +44,13 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
 
 # Theme templates
 hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
-    str(importlib_resources.files("tutorindigo") / "templates")
+    str(importlib_resources.files("inovatecindigo") / "templates")
 )
 # This is where the theme is rendered in the openedx build directory
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     [
-        ("indigo", "build/openedx/themes"),
-        ("indigo/env.config.jsx", "plugins/mfe/build/mfe"),
+        ("inovatec-indigo", "build/openedx/themes"),
+        ("inovatec-indigo/env.config.jsx", "plugins/mfe/build/mfe"),
     ],
 )
 
@@ -58,8 +58,8 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
 # "partials" directory
 hooks.Filters.ENV_PATTERNS_INCLUDE.add_items(
     [
-        r"indigo/lms/static/sass/partials/lms/theme/",
-        r"indigo/cms/static/sass/partials/cms/theme/",
+        r"inovatec-indigo/lms/static/sass/partials/lms/theme/",
+        r"inovatec-indigo/cms/static/sass/partials/cms/theme/",
     ]
 )
 
@@ -67,8 +67,8 @@ hooks.Filters.ENV_PATTERNS_INCLUDE.add_items(
 # init script: set theme automatically
 with open(
     os.path.join(
-        str(importlib_resources.files("tutorindigo") / "templates"),
-        "indigo",
+        str(importlib_resources.files("inovatecindigo") / "templates"),
+        "inovatec-indigo",
         "tasks",
         "init.sh",
     ),
@@ -90,9 +90,9 @@ def _override_openedx_docker_image(
         elif k == "MFE_DOCKER_IMAGE":
             mfe_image = v
     if openedx_image:
-        items.append(("DOCKER_IMAGE_OPENEDX", f"{openedx_image}-indigo"))
+        items.append(("DOCKER_IMAGE_OPENEDX", f"{openedx_image}-inovatec-indigo"))
     if mfe_image:
-        items.append(("MFE_DOCKER_IMAGE", f"{mfe_image}-indigo"))
+        items.append(("MFE_DOCKER_IMAGE", f"{mfe_image}-inovatec-indigo"))
     return items
 
 
@@ -143,11 +143,11 @@ hooks.Filters.ENV_PATCHES.add_items(
             "openedx-common-assets-settings",
             """
 javascript_files = ['base_application', 'application', 'certificates_wv']
-dark_theme_filepath = ['indigo/js/dark-theme.js']
+dark_theme_filepath = ['inovatec-indigo/js/dark-theme.js']
 
 for filename in javascript_files:
-    if filename in PIPELINE['JAVASCRIPT']:
-        PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
+        if filename in PIPELINE['JAVASCRIPT']:
+            PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
 """,
         ),
         # for development
@@ -155,7 +155,7 @@ for filename in javascript_files:
             "openedx-lms-development-settings",
             """
 javascript_files = ['base_application', 'application', 'certificates_wv']
-dark_theme_filepath = ['indigo/js/dark-theme.js']
+dark_theme_filepath = ['inovatec-indigo/js/dark-theme.js']
 
 for filename in javascript_files:
     if filename in PIPELINE['JAVASCRIPT']:
@@ -179,7 +179,7 @@ MFE_CONFIG['INDIGO_FOOTER_NAV_LINKS'] = {{ INDIGO_FOOTER_NAV_LINKS }}
 # Apply patches from tutor-indigo
 for path in glob(
     os.path.join(
-        str(importlib_resources.files("tutorindigo") / "patches"),
+        str(importlib_resources.files("inovatecindigo") / "patches"),
         "*",
     )
 ):
