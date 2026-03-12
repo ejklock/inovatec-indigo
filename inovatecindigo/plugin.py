@@ -7,11 +7,15 @@ import warnings
 from glob import glob
 
 import importlib_resources
-from tutor import hooks
+from tutor import env, hooks
 from tutor.__about__ import __version_suffix__
 from tutormfe.hooks import PLUGIN_SLOTS
 
 from .__about__ import __version__
+
+# Prevent Jinja from trying to render translation files as templates
+env.BIN_FILE_EXTENSIONS.append('.json')
+env.BIN_FILE_EXTENSIONS.append('.po')
 
 # Guard: tutor-indigo original and inovatec-indigo share the same patches.
 # If both are enabled simultaneously, patches will be duplicated in env.config.jsx
@@ -71,6 +75,10 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     [
         ("inovatec-indigo", "build/openedx/themes"),
         ("inovatec-indigo/env.config.jsx", "plugins/mfe/build/mfe"),
+        # Django backend translations (pt_BR .po files)
+        ("openedx/locale", "build"),
+        # MFE frontend translations (pt_BR .json files)
+        ("mfe/i18n", "plugins/mfe/build"),
     ],
 )
 
