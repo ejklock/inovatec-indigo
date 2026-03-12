@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import typing as t
+import warnings
 from glob import glob
 
 import importlib_resources
@@ -11,6 +12,25 @@ from tutor.__about__ import __version_suffix__
 from tutormfe.hooks import PLUGIN_SLOTS
 
 from .__about__ import __version__
+
+# Guard: tutor-indigo original and inovatec-indigo share the same patches.
+# If both are enabled simultaneously, patches will be duplicated in env.config.jsx
+# causing "Identifier 'React' has already been declared" build errors.
+try:
+    import tutorindigo  # noqa: F401
+    warnings.warn(
+        "\n\n[inovatec-indigo] CONFLITO DETECTADO: o plugin 'tutor-indigo' (original) "
+        "está instalado ao mesmo tempo que 'inovatec-indigo'.\n"
+        "Isso duplica os patches em env.config.jsx e causa falha no build dos MFEs.\n"
+        "Solução: desabilite o tutor-indigo com:\n\n"
+        "    tutor plugins disable indigo\n\n"
+        "Em seguida, regenere o ambiente:\n\n"
+        "    tutor config save\n",
+        RuntimeWarning,
+        stacklevel=1,
+    )
+except ImportError:
+    pass
 
 # Handle version suffix in main mode, just like tutor core
 if __version_suffix__:
