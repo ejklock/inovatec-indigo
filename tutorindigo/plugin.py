@@ -22,20 +22,20 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
     # Add here your new settings
     "defaults": {
         "VERSION": __version__,
-        "WELCOME_MESSAGE": "The place for all your online learning",
-        "PRIMARY_COLOR": "#15376D",  # Indigo
+        "WELCOME_MESSAGE": "Bem-vindo(a) ao Núcleo de Inovação e Tecnologia em Educação, Ciências e Sustentabilidade da UFMT",
+        "PRIMARY_COLOR": "#244FFF",  # Inovatec Ulmo Blue
         "ENABLE_DARK_TOGGLE": True,
         # Footer links are dictionaries with a "title" and "url"
         # To remove all links, run:
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[]
         "FOOTER_NAV_LINKS": [
-            {"title": "About Us", "url": "/about"},
-            {"title": "Blog", "url": "/blog"},
-            {"title": "Donate", "url": "/donate"},
-            {"title": "Terms of Service", "url": "/tos"},
-            {"title": "Privacy Policy", "url": "/privacy"},
-            {"title": "Help", "url": "/help"},
-            {"title": "Contact Us", "url": "/contact"},
+            {"title": "About Us", "url": "https://cienciatecnologia.org/portal/pt-BR"},
+            # {"title": "Blog", "url": "/blog"},
+            # {"title": "Donate", "url": "/donate"},
+            # {"title": "Terms of Service", "url": "/tos"},
+            # {"title": "Privacy Policy", "url": "/privacy"},
+            # {"title": "Help", "url": "/help"},
+            # {"title": "Contact Us", "url": "/contact"},
         ],
     },
     "unique": {},
@@ -121,7 +121,7 @@ for mfe in indigo_styled_mfes:
             (
                 f"mfe-dockerfile-post-npm-install-{mfe}",
                 """
-RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.0'
+RUN npm install '@edx/brand@git+https://github.com/ejklock/brand-openedx-indigo.git#inovatec/ulmo'
 """,  # noqa: E501
             ),
         ]
@@ -130,7 +130,7 @@ RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.0'
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@github:@edly-io/brand-openedx#indigo-2.5.0'",
+        "RUN npm install '@edx/brand@git+https://github.com/ejklock/brand-openedx-indigo.git#inovatec/ulmo'",
     )
 )
 
@@ -302,14 +302,14 @@ paragon_theme_urls = {
     "variants": {
         "light": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/light.min.css",
+                "default": "https://raw.githubusercontent.com/ejklock/brand-openedx-indigo/refs/heads/inovatec/ulmo/dist/light.min.css",
+                "brandOverride": "https://raw.githubusercontent.com/ejklock/brand-openedx-indigo/refs/heads/inovatec/ulmo/dist/light.min.css",
             },
         },
         "dark": {
             "urls": {
-                "default": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
-                "brandOverride": "https://raw.githubusercontent.com/edly-io/brand-openedx/refs/heads/ulmo/indigo/dist/dark.min.css",
+                "default": "https://raw.githubusercontent.com/ejklock/brand-openedx-indigo/refs/heads/inovatec/ulmo/dist/dark.min.css",
+                "brandOverride": "https://raw.githubusercontent.com/ejklock/brand-openedx-indigo/refs/heads/inovatec/ulmo/dist/dark.min.css",
             }
         },
     }
