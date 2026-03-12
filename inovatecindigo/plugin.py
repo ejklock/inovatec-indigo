@@ -49,7 +49,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         # To remove all links, run:
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[]
         "FOOTER_NAV_LINKS": [
-            {"title": "About Us", "url": "https://cienciatecnologia.org/portal/pt-BR"},
+            {"title": "Sobre", "url": "https://cienciatecnologia.org/portal/pt-BR"},
             # {"title": "Blog", "url": "/blog"},
             # {"title": "Donate", "url": "/donate"},
             # {"title": "Terms of Service", "url": "/tos"},
