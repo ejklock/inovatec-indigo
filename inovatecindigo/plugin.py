@@ -75,10 +75,10 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     [
         ("inovatec-indigo", "build/openedx/themes"),
         ("inovatec-indigo/env.config.jsx", "plugins/mfe/build/mfe"),
-        # Django backend translations (pt_BR .po files)
-        ("openedx/locale", "build"),
-        # MFE frontend translations (pt_BR .json files)
-        ("mfe/i18n", "plugins/mfe/build"),
+        # # Django backend translations (pt_BR .po files)
+        # ("openedx/locale", "build"),
+        # # MFE frontend translations (pt_BR .json files)
+        # ("mfe/i18n", "plugins/mfe/build"),
     ],
 )
 
